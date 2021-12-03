@@ -455,3 +455,4 @@ $RECYCLE.BIN/
 API/appsettings.json
 API/WeatherForecast.cs
 API/Controllers/WeatherForecastController.cs
+client/src/commands.txt
