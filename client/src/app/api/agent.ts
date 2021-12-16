@@ -23,11 +23,10 @@ const Catalog = {
 const TestErrors = {
 
     get400Error : () => requests.get('buggy/bad-request'),
-    get401Error : () => requests.get('buggy/unauthorized'),
+    get401Error : () => requests.get('buggy/unauthorised'),
     get404Error : () => requests.get('buggy/not-found'),
     get500Error : () => requests.get('buggy/server-error'),
     getValidationError : () => requests.get('buggy/validation-error'),
-
 }
 
 const agent = {
