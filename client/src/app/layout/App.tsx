@@ -33,7 +33,7 @@ function App() {
     } else {
       setLoading(false);
     }
-  }, [setBasket])
+  }, [dispatch])
 
 
 
