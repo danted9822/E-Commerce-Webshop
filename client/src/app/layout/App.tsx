@@ -13,22 +13,21 @@ import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import BasketPage from "../../features/basket/BasketPage";
 import agent from "../api/agent";
-import { useStoreContext } from "../context/StoreContext";
 import { getCookie } from "../util/Util";
 import LoadingComponent from "./LoadingComponent";
 import CheckoutPage from "../../features/checkout/CheckoutPage";
+import { useAppDispatch } from "../store/ConfigureStore";
+import { setBasket } from "../../features/basket/basketSlice";
 
 function App() {
-  
-
-  const {setBasket} = useStoreContext();
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const buyerId = getCookie('buyerId');
     if (buyerId) {
       agent.Basket.get()
-        .then(basket => setBasket(basket))
+        .then(basket => dispatch(setBasket(basket)))
         .catch(error => console.log(error))
         .finally(() => setLoading(false))
     } else {
