@@ -8,10 +8,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Paper } from '@mui/material';
-import { Link } from 'react-router-dom';
-import agent from '../../app/api/agent';
+import { Link, useHistory } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
+import { useAppDispatch } from '../../app/store/ConfigureStore';
+import { singInUser } from './accountSlice';
 
 
 const theme = createTheme();
@@ -20,11 +21,15 @@ const theme = createTheme();
 
 export default function Login() {
 
-
-    const {register, handleSubmit, formState: {isSubmitting} } = useForm()
+    const history = useHistory();
+    const dispatch = useAppDispatch();
+    const {register, handleSubmit, formState: {isSubmitting, errors, isValid} } = useForm({
+        mode: 'all'
+    })
 
     async function submitForm(data: FieldValues) {
-        await agent.Account.login(data);
+       await dispatch(singInUser(data))
+       history.push('/catalog');
     }
 
 
@@ -45,7 +50,9 @@ export default function Login() {
                         fullWidth
                         label="Username"
                         autoFocus
-                        {...register('username')}
+                        {...register('username', {required: "Username is required"})}
+                        error={!!errors.username}
+                        helperText={errors?.username?.message}
 
                     />
                     <TextField
@@ -53,11 +60,14 @@ export default function Login() {
                         fullWidth
                         label="Password"
                         type="password"
-                        {...register('password')}
+                        {...register('password', {required: "Password is required"})}
+                        error={!!errors.password}
+                        helperText={errors?.password?.message}
 
                     />
                     <LoadingButton
                         loading={isSubmitting}
+                        disabled={!isValid}
                         type="submit"
                         fullWidth
                         variant="contained"
