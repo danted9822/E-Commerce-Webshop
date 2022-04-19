@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import { useAppDispatch, useAppSelector } from '../store/ConfigureStore';
 import { singOut } from '../../features/account/accountSlice';
+import { clearBasket } from '../../features/basket/basketSlice';
 
 export default function SignedInMenu() {
 
@@ -24,8 +25,8 @@ export default function SignedInMenu() {
             <Button
                 color='inherit'
                 onClick={handleClick}
-                sx={{typography: 'h6'}}
-                
+                sx={{ typography: 'h6' }}
+
             >
                 {user?.email}
             </Button>
@@ -37,7 +38,10 @@ export default function SignedInMenu() {
             >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My orders</MenuItem>
-                <MenuItem onClick={() => dispatch(singOut())}>Logout</MenuItem>
+                <MenuItem onClick={() => {
+                    dispatch(singOut());
+                    dispatch(clearBasket());
+                }}>Logout</MenuItem>
             </Menu>
         </>
     );

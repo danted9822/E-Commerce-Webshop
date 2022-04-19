@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Paper } from '@mui/material';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 import { useAppDispatch } from '../../app/store/ConfigureStore';
@@ -22,14 +22,21 @@ const theme = createTheme();
 export default function Login() {
 
     const history = useHistory();
+    const location = useLocation<any>();
     const dispatch = useAppDispatch();
-    const {register, handleSubmit, formState: {isSubmitting, errors, isValid} } = useForm({
+    const { register, handleSubmit, formState: { isSubmitting, errors, isValid } } = useForm({
         mode: 'all'
     })
 
     async function submitForm(data: FieldValues) {
-       await dispatch(singInUser(data))
-       history.push('/catalog');
+        try {
+            await dispatch(singInUser(data))
+            history.push(location.state?.from?.pathname ||'/catalog');
+        } catch (error) {
+            console.log(error);
+
+        }
+
     }
 
 
@@ -50,7 +57,7 @@ export default function Login() {
                         fullWidth
                         label="Username"
                         autoFocus
-                        {...register('username', {required: "Username is required"})}
+                        {...register('username', { required: "Username is required" })}
                         error={!!errors.username}
                         helperText={errors?.username?.message}
 
@@ -60,7 +67,7 @@ export default function Login() {
                         fullWidth
                         label="Password"
                         type="password"
-                        {...register('password', {required: "Password is required"})}
+                        {...register('password', { required: "Password is required" })}
                         error={!!errors.password}
                         helperText={errors?.password?.message}
 
