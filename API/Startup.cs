@@ -61,24 +61,17 @@ namespace API
                     }
                 });
             });
-            services.AddDbContext<StoreContext>(opt => 
+            services.AddDbContext<StoreContext>(opt =>
             {
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
-            services.AddIdentityCore<User>(opt => 
+            services.AddIdentityCore<User>(opt =>
             {
                 opt.User.RequireUniqueEmail = true;
 
             })
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<StoreContext>();
-            
-            services.AddIdentityCore<User>(opt =>
-            {
-                opt.User.RequireUniqueEmail = true;
-            })
-                .AddRoles<IdentityRole>()
+                .AddRoles<Role>()
                 .AddEntityFrameworkStores<StoreContext>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
@@ -113,7 +106,8 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors(opt => {
+            app.UseCors(opt =>
+            {
                 opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
             });
             app.UseAuthentication();
