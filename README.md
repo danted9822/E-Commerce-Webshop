@@ -9,8 +9,8 @@ Re-Store is an e-commerce web shop where the customers can you choose between di
 
 ## 1. Backend:
 
- - .Net
- - SQLite database
+  - .Net
+  - SQLite database
 
 ## 2. Frontend:
 
@@ -42,9 +42,16 @@ Re-Store is an e-commerce web shop where the customers can you choose between di
         cd client
         npm install 
         npm start
+        
+# Pictures:
+   ![alt text](https://i.imgur.com/MpCrAW0.png)
+   ![alt text](https://i.imgur.com/knhM7sl.png)
+   ![alt text](https://i.imgur.com/mhQCLG9.png)
+   
+        
 # Created by:
     Péter Halász        
         
         
-# Contact
+# Contact:
    [<img src="https://img.shields.io/badge/Linkedin-white?style=flat&logo=linkedin&labelColor=blue" alt="LinkedIn logo" title="LinkedIn" height="25" />](https://www.linkedin.com/in/hal%C3%A1sz-p%C3%A9ter-3ba656189/)
