@@ -13,7 +13,11 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.8" />
+<<<<<<< HEAD
     <PackageReference Include="Stripe.net" Version="39.108.0" />
+=======
+    <PackageReference Include="Stripe.net" Version="39.107.0" />
+>>>>>>> 2054f806a88d34e0f3a3537261c9fb7704031690
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
