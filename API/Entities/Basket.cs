@@ -10,13 +10,8 @@ namespace API.Entities
         public List<BasketItem> Items { get; set; } = new();
         public string PaymentIntentId { get; set; }
         public string ClientSecret { get; set; }
-<<<<<<< HEAD
 
         public void AddItem(Product product, int quantity)
-=======
-        
-        public void AddItem(Product product,int quantity)
->>>>>>> 2054f806a88d34e0f3a3537261c9fb7704031690
         {
             if (Items.All(item => item.ProductId != product.Id))
             {

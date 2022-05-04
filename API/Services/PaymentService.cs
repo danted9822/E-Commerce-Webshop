@@ -13,10 +13,6 @@ namespace API.Services
         public PaymentService(IConfiguration config)
         {
             _config = config;
-<<<<<<< HEAD
-=======
-
->>>>>>> 2054f806a88d34e0f3a3537261c9fb7704031690
         }
 
         public async Task<PaymentIntent> CreateOrUpdatePaymentIntent(Basket basket)
@@ -36,7 +32,6 @@ namespace API.Services
                 {
                     Amount = subtotal + deliveryFee,
                     Currency = "usd",
-<<<<<<< HEAD
                     PaymentMethodTypes = new List<string> {"card"}
                 };
                 intent = await service.CreateAsync(options);
@@ -51,27 +46,6 @@ namespace API.Services
             }
 
             return intent;
-=======
-                    PaymentMethodTypes = new List<string> { "card" }
-                };
-
-                intent = await service.CreateAsync(options);
-                basket.PaymentIntentId = intent.Id;
-                basket.ClientSecret = intent.ClientSecret;
-
-            }
-            else
-            {
-                var options = new PaymentIntentUpdateOptions
-                {
-                    Amount = subtotal + deliveryFee,
-                };
-                
-                await service.UpdateAsync(basket.PaymentIntentId, options);
-            }
-            return intent;
-
->>>>>>> 2054f806a88d34e0f3a3537261c9fb7704031690
         }
     }
 }
