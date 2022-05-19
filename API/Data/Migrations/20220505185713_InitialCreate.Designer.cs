@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20220504124957_IdentityAdded")]
-    partial class IdentityAdded
+    [Migration("20220505185713_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -175,14 +175,14 @@ namespace API.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "8e18f4f4-39da-4169-84f7-4de5f739c8dd",
+                            ConcurrencyStamp = "39aefaf4-b5b5-4398-a897-cc588a297c4e",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "56f5a31e-038b-43bb-af7b-205af01270e2",
+                            ConcurrencyStamp = "deb957a1-6a53-424e-a362-ef0e2cc23447",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

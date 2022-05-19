@@ -100,7 +100,7 @@ namespace API.Controllers
                     City = orderDto.ShippingAddress.City,
                     State = orderDto.ShippingAddress.State,
                     Zip = orderDto.ShippingAddress.Zip,
-                    Country = orderDto.ShippingAddress.FullName,
+                    Country = orderDto.ShippingAddress.Country,
                 };
                 user.Address = address;
                 

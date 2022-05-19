@@ -7,7 +7,7 @@ import { store } from "../store/ConfigureStore";
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
 
-axios.defaults.baseURL = 'http://localhost:5000/api/';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 //the browser wiil recive a cookie and it will set the cookie inside my appliction storage
 axios.defaults.withCredentials = true;
@@ -22,8 +22,7 @@ axios.interceptors.request.use(config => {
 })
 
 axios.interceptors.response.use(async response => {
-
-    await sleep();
+    if(process.env.NODE_ENV ==='development') await sleep();
 
     const pagination = response.headers['pagination'];
 
